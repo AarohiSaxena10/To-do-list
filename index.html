@@ -4,64 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body{
+   <style>
+        body {
             background-color: black;
         }
-       .container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-       
-       }
-       .card{
-        background-color:rgb(255, 0, 128);
-        margin-top: 40px;
-        width: 20%;
-        padding-left: 15px;
-        padding-right: 10px;
-        padding-bottom: 10px;
-       
-       }
 
-       .card input,button{
-        border-radius: 10px;
-       }
-       .card input{
-        width: 70%;
-       }
-       .main{
-        background-color:rgb(255, 0, 128);
-        width: 20%;
-        padding-left: 15px;
-        padding-right: 10px;
-        padding-bottom: 10px;
-        display: none;
-        justify-content: space-between;
-       }
-       .val{
-        display:flex;
-        justify-content: space-between;
-       }
-       .check{
-        padding-left: 15px;
-       }
-       .but{
-        float: right;
-        padding-right: 10px;
-        border-radius: 10px;
-       }
-       .box{
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background-color: rgb(255, 0, 128);
+            margin-top: 40px;
+            width: 20%;
+            padding-left: 15px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            border-top-left-radius: 10px; /* top-left corner */
+            border-top-right-radius: 10px; 
+        }
+
+        .card input, button {
+            border-radius: 10px;
+        }
+
+        .card input {
+            width: 70%;
+        }
+
+        .main {
+            background-color: rgb(255, 0, 128);
+            width: 20%;
+            padding-left: 15px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            display: none;
+            justify-content: space-between;
+            word-wrap: normal;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+
+        }
+
+        .box {
             width: 100%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-left: 0px;
-       }
-       .box label{
-        margin-left: 10px;
-       }
+            justify-content: flex-start; /* Align checkbox and text to the left */
+            align-items: center; /* Vertically center items */
+            margin-bottom: 10px; /* Add some space between tasks */
+        }
+
+        .box label {
+            margin-left: 10px; 
+            flex-grow: 1; 
+        }
+        .card button{
+            background-color: black;
+            color: white;
+        }
+
+        .box input {
+            margin-right: 10px; /* Space between checkbox and label */
+        }
+
+        .but {
+            border-radius: 10px;
+            padding: 5px 10px;
+            color: white;
+            background-color: rgb(0, 0, 0);
+            cursor: pointer;
+            margin-left: auto; /* Push the button to the far right */
+        }
     </style>
 </head>
 <body>
