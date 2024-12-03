@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+       .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+       }
+       .card{
+        background-color:rgb(255, 0, 128);
+        margin-top: 40px;
+        width: 20%;
+        padding-left: 15px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+       
+       }
+
+       .card input,button{
+        border-radius: 10px;
+       }
+       .card input{
+        width: 70%;
+       }
+       .main{
+        background-color:rgb(255, 0, 128);
+        width: 20%;
+        padding-left: 15px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        display: none;
+        justify-content: space-between;
+       }
+       .val{
+        display:flex;
+        justify-content: space-between;
+       }
+       .check{
+        padding-left: 15px;
+       }
+       .but{
+        float: right;
+        padding-right: 10px;
+        border-radius: 10px;
+       }
+       .box{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 0px;
+       }
+       .box label{
+        margin-left: 10px;
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <div class="card">
+        <h1>To do List</h1>
+        <input type="text"class="input"  placeholder="Add your task"> 
+        <button onclick="addtask()">Add task</button>
+        
+       </div>
+       <div class="main">
+        
+       </div>
+    </div>
+</body>
+<script>
+    const button=document.createElement("button");
+    const task=document.getElementsByClassName("input")[0];
+    const write=task.value;
+    write.className="write";
+    function addtask()
+    {
+        if(task.value==""){
+            alert("Enter a task");
+        }
+        else{
+            document.querySelector(".main").style.display="block";
+            const label =document.createElement("label");
+        const div =document.createElement("div");
+        label.textContent=task.value;
+        // div.innerText=task;
+       div.className="box";
+     const check=document.createElement("input");
+    check.type="checkbox";
+        check.className=check;
+        div.prepend(check);
+        label.setAttribute("for","check");
+        div.append(label);
+        const but=document.createElement("button");
+        but.className="but";
+        but.innerText="delete";
+        div.append(but);
+        const par=document.getElementsByClassName("main")[0]
+        par.append(div);
+        but.addEventListener("click",()=>{
+            const divpar = but.parentElement.remove();
+        })
+        check.addEventListener("change",()=>{
+            if(check.checked){
+                label.style.textDecoration ="line-through";
+            }
+        })
+
+
+    }
+    document.querySelector(".input").value = "";
+       
+        }
+        
+// const list=document.getElementsByClassName("val")[0];
+// const inp=document.getElementsByClassName("input")[0];
+// function addtask(){
+//     if(inp.value=="")
+// alert("Enter a task");
+// else{
+//     document.querySelector(".val").style.display="block";
+//     const para=document.getElementsByClassName("text")[0];
+//     para.innerHTML=inp.value;
+//         const but=document.getElementsByClassName("dlt")[0];
+//         const par=document.getElementsByClassName("card")[0];
+//         par.append(list);
+//         but.addEventListener("click",()=>{
+//             const divpar = but.parentElement.remove();
+//         })
+     
+// }
+       
+// }
+
+</script>
+</html>
