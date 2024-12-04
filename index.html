@@ -8,14 +8,16 @@
         body {
             background-color: black;
         }
-
+    .cut{
+        text-decoration:line-through;
+    }
         .container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-
+        
         .card {
             background-color: rgb(255, 0, 128);
             margin-top: 40px;
@@ -189,9 +191,9 @@
         })
         check.addEventListener("change",()=>{
          if (check.checked) {
-                     label.style.textDecoration ="line-through"; // Add strikethrough
+            label.classList.add("cut");// Add strikethrough
                 } else {
-                    label.classList.remove("line-through"); // Remove strikethrough
+                    label.classList.remove("cut"); // Remove strikethrough
                 }
         })
 
