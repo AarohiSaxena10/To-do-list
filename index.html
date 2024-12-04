@@ -74,7 +74,7 @@
 
         .but {
             border-radius: 10px;
-            padding:0px 10px 0px 10px;
+            padding: 0px 10px;
             color: white;
             background-color: rgb(0, 0, 0);
             cursor: pointer;
@@ -158,70 +158,81 @@
     </div>
 </body>
 <script>
-    const button=document.createElement("button");
-    const task=document.getElementsByClassName("input")[0];
-    const write=task.value;
-    write.className="write";
+//   const button=document.createElement("button");
+        
     function addtask()
     {
-        if(task.value==""){
+        const task=document.getElementsByClassName("input")[0];
+        const value=task.value.trim();
+        if(value==""){
             alert("Enter a task");
         }
         else{
+            const  timeId=Date.now();
+            create(timeId,value);
+            saveToLocal(timeId,value); 
+        }  
+    }
+        function create(timeId,value){
             document.querySelector(".main").style.display="block";
             const label =document.createElement("label");
-        const div =document.createElement("div");
-        label.textContent=task.value;
-        // div.innerText=task;
-       div.className="box";
-     const check=document.createElement("input");
-    check.type="checkbox";
-        check.className=check;
-        div.prepend(check);
-        label.setAttribute("for","check");
-        div.append(label);
-        const but=document.createElement("button");
-        but.className="but";
-        but.innerText="Delete";
-        div.append(but);
-        const par=document.getElementsByClassName("main")[0]
-        par.append(div);
-        but.addEventListener("click",()=>{
-            const divpar = but.parentElement.remove();
-        })
-        check.addEventListener("change",()=>{
-         if (check.checked) {
-            label.classList.add("cut");// Add strikethrough
-                } else {
+            const div =document.createElement("div");
+            div.dataset.id=timeId;
+            label.textContent=value;
+            div.className="box";
+            const check=document.createElement("input");
+            check.type="checkbox";
+            check.className=check;
+            div.prepend(check);
+            label.setAttribute("for","check");
+            div.append(label);
+            const but=document.createElement("button");
+            but.className="but";
+            but.innerText="Delete";
+            div.append(but);
+            const par=document.getElementsByClassName("main")[0]
+            par.append(div);
+            but.addEventListener("click",()=>{
+                const divpar = but.parentElement.remove();
+                deleteFromLocal(timeId);
+            })
+            check.addEventListener("change",()=>{
+                if (check.checked) {
+                    label.classList.add("cut");// Add strikethrough
+                } 
+                else {
                     label.classList.remove("cut"); // Remove strikethrough
                 }
-        })
-
-
-    }
-    document.querySelector(".input").value = "";
-       
-        }
+            })
         
-// const list=document.getElementsByClassName("val")[0];
-// const inp=document.getElementsByClassName("input")[0];
-// function addtask(){
-//     if(inp.value=="")
-// alert("Enter a task");
-// else{
-//     document.querySelector(".val").style.display="block";
-//     const para=document.getElementsByClassName("text")[0];
-//     para.innerHTML=inp.value;
-//         const but=document.getElementsByClassName("dlt")[0];
-//         const par=document.getElementsByClassName("card")[0];
-//         par.append(list);
-//         but.addEventListener("click",()=>{
-//             const divpar = but.parentElement.remove();
-//         })
-     
-// }
-       
-// }
+        document.querySelector(".input").value = ""; 
+    }
+    function  saveToLocal(timeId,value) {
+        const string=localStorage.getItem("task");
+        var obj=(string)?JSON.parse(string):{};
+        obj[timeId]=value;
+        const StringToobj=JSON.stringify(obj);
+        localStorage.setItem("task",StringToobj);
+    }
+    function deleteFromLocal(timeId){
+        const string =localStorage.getItem("task");
+        var obj=(string)?JSON.parse(string):{};
+        delete obj[timeId];
+        const StringToobj=JSON.stringify(obj);
+        localStorage.setItem("task",StringToobj);             
+    }
+    document.addEventListener("DOMContentLoaded",()=>{
+        ReloadAllboxes();
+    })
+    function ReloadAllboxes(){        
+        const string=localStorage.getItem("task");
+        var obj=(string)?JSON.parse(string):{};
+        for (const key in obj) {
+            create(key,obj[key]);            
+        }
+    }  
+        
+
 
 </script>
 </html>
