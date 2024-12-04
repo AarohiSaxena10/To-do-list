@@ -115,7 +115,7 @@
             .card button{
                 margin-top:10px;
                 width:85px;
-                margin-left:115px;
+                margin-left:120px;
             }
             .main {
                 width: 82.3%;
@@ -188,11 +188,10 @@
             const divpar = but.parentElement.remove();
         })
         check.addEventListener("change",()=>{
-            if(check.checked){
-                label.style.textDecoration ="line-through";
-            }
-            else {
-                    label.classList.remove("line-through");
+         if (check.checked) {
+                    label.classList.add("line-through"); // Add strikethrough
+                } else {
+                    label.classList.remove("line-through"); // Remove strikethrough
                 }
         })
 
