@@ -159,10 +159,11 @@
 </body>
 <script>
 //   const button=document.createElement("button");
+const task=document.getElementsByClassName("input")[0];
     function addtask()
     {
-        const task=document.getElementsByClassName("input")[0];
-        const value=task.value.trim();
+        
+         const value=task.value.trim();
         if(value==""){
             alert("Enter a task");
         }
@@ -172,6 +173,11 @@
             saveToLocal(timeId,value,false); 
         }  
     }
+    task.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      addtask();
+    }
+  });
         function create(timeId,value,ischeck=false){
             document.querySelector(".main").style.display="block";
             const label =document.createElement("label");
